@@ -10,6 +10,7 @@ export function GemViewer({ autoRotate = true, enableZoom = false }: GemViewerPr
     <Canvas
       camera={{ position: [0, 0.1, 4.2], fov: 36 }}
       gl={{ antialias: true, toneMapping: 3, toneMappingExposure: 1.2 }}
+      style={{ touchAction: 'none' }}
     >
       <Gem />
       <pointLight position={[2.5, 3.5, 3]} intensity={28} color="#fff2d6" distance={30} decay={1} />
@@ -33,6 +34,7 @@ export function GemViewer({ autoRotate = true, enableZoom = false }: GemViewerPr
         dampingFactor={0.06}
         minPolarAngle={Math.PI * 0.25}
         maxPolarAngle={Math.PI * 0.75}
+        touches={{ ONE: 1, TWO: 2 }}
       />
       <Environment preset="studio" resolution={1024} />
     </Canvas>

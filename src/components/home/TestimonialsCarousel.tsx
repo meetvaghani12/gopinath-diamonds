@@ -17,22 +17,22 @@ export function TestimonialsCarousel() {
   }, [next]);
 
   return (
-    <section style={{ padding: '100px 48px', background: 'var(--bg-deep)', borderTop: '1px solid var(--line)' }}>
+    <section style={{ padding: 'clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px)', background: 'var(--bg-deep)', borderTop: '1px solid var(--line)' }}>
       <div style={{ maxWidth: 840, margin: '0 auto', textAlign: 'center' }}>
-        <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 64, color: 'var(--line-2)', lineHeight: 0, height: 30 }}>&ldquo;</div>
+        <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(48px, 6vw, 64px)', color: 'var(--line-2)', lineHeight: 0, height: 30 }}>&ldquo;</div>
         <motion.p
           key={active}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(24px, 3.2vw, 38px)', lineHeight: 1.4, color: 'var(--text)', minHeight: '1.4em' }}
+          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px, 3.2vw, 38px)', lineHeight: 1.4, color: 'var(--text)', minHeight: '1.4em' }}
         >
           {quotes[active].q}
         </motion.p>
-        <div style={{ marginTop: 30, fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'var(--accent)' }}>
+        <div style={{ marginTop: 24, fontFamily: "'Jost', sans-serif", fontSize: 'clamp(10px, 1vw, 11px)', letterSpacing: '0.32em', textTransform: 'uppercase', color: 'var(--accent)' }}>
           {quotes[active].a}
         </div>
-        <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 40 }}>
+        <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 32 }}>
           {quotes.map((_, i) => (
             <button
               key={i}
