@@ -15,7 +15,7 @@ export function BespokeSection() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 'clamp(10px, 1vw, 11px)', letterSpacing: '0.5em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 16 }}>The Atelier</div>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 'clamp(10px, 1vw, 11px)', letterSpacing: '0.5em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 16 }}>Bespoke Diamonds</div>
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(28px, 4.4vw, 56px)', color: 'var(--text)', lineHeight: 1.06 }}>
             Commission the<br />Extraordinary
           </h2>

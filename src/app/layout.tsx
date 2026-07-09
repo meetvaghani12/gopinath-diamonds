@@ -6,7 +6,6 @@ import { useThemeStore, applyTheme } from '@/stores/theme';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { SparkleField } from '@/components/layout/SparkleField';
-import { PaletteSwitcher } from '@/components/layout/PaletteSwitcher';
 import './globals.css';
 
 const cormorant = Cormorant_Garamond({
@@ -36,7 +35,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
       <body>
         <SparkleField />
-        <PaletteSwitcher />
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { shapes } from '@/lib/constants';
 import { ShapeIcon } from '@/components/home/ShapeIcon';
 
@@ -24,22 +25,23 @@ export function DiamondShapes() {
       </motion.div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 1, background: 'var(--line)', border: '1px solid var(--line)' }}>
         {shapes.map((s, i) => (
-          <motion.div
-            key={s.kind}
-            initial={{ opacity: 0, y: 36 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 1.1, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-            style={{ background: 'var(--surface)', padding: 'clamp(24px, 3vw, 38px) clamp(10px, 2vw, 20px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, transition: 'background 0.5s ease' }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--surface-2)')}
-            onMouseLeave={(e) => (e.currentTarget.style.background = '')}
-          >
-            <ShapeIcon kind={s.kind} />
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(18px, 1.8vw, 22px)', color: 'var(--text)' }}>{s.name}</div>
-              <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 9, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: 4 }}>{s.facets}</div>
-            </div>
-          </motion.div>
+          <Link key={s.kind} href={`/diamonds/the-aurora?shape=${s.kind}`} scroll style={{ textDecoration: 'none' }}>
+            <motion.div
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 1.1, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              style={{ background: 'var(--surface)', padding: 'clamp(24px, 3vw, 38px) clamp(10px, 2vw, 20px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, cursor: 'pointer', transition: 'background 0.5s ease' }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--surface-2)')}
+              onMouseLeave={(e) => (e.currentTarget.style.background = '')}
+            >
+              <ShapeIcon kind={s.kind} />
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(18px, 1.8vw, 22px)', color: 'var(--text)' }}>{s.name}</div>
+                <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 9, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: 4 }}>{s.facets}</div>
+              </div>
+            </motion.div>
+          </Link>
         ))}
       </div>
     </section>

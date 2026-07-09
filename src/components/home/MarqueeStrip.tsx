@@ -1,5 +1,5 @@
 export function MarqueeStrip() {
-  const items = ['GIA Certified', 'Conflict-Free', 'Hand-Selected Rough', 'Bespoke Atelier', 'Lifetime Assurance'];
+  const items = ['GIA Certified', 'Conflict-Free', 'Hand-Selected Rough', 'Bespoke Diamonds', 'Lifetime Assurance'];
 
   return (
     <div style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: 'clamp(16px, 2vw, 22px) 0', overflow: 'hidden', background: 'var(--surface)' }}>

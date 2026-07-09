@@ -5,7 +5,6 @@ import { JewelleryTypes } from '@/components/home/JewelleryTypes';
 import { FancyColors } from '@/components/home/FancyColors';
 import { FourCsSection } from '@/components/home/FourCsSection';
 import { CraftSection } from '@/components/home/CraftSection';
-import { SignatureShowcase } from '@/components/home/SignatureShowcase';
 import { TestimonialsCarousel } from '@/components/home/TestimonialsCarousel';
 import { BespokeSection } from '@/components/home/BespokeSection';
 import { ContactSection } from '@/components/home/ContactSection';
@@ -20,7 +19,6 @@ export default function HomePage() {
       <FancyColors />
       <FourCsSection />
       <CraftSection />
-      <SignatureShowcase />
       <TestimonialsCarousel />
       <BespokeSection />
       <ContactSection />

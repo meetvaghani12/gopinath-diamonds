@@ -1,8 +1,16 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { GemViewer } from '@/components/gem/GemViewer';
+import { shapeInfo } from '@/lib/constants';
 
 export function StoneHero() {
+  const params = useSearchParams();
+  const requested = params.get('shape') ?? 'round';
+  const shape = shapeInfo[requested] ? requested : 'round';
+  const info = shapeInfo[shape];
+  const modelPath = `/models/shapes/${shape}.glb`;
+
   const specs = [
     { label: 'Carat', value: '8.02' },
     { label: 'Colour', value: 'D' },
@@ -14,7 +22,7 @@ export function StoneHero() {
     <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', minHeight: 'calc(100dvh - 66px)' }}>
       <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'radial-gradient(ellipse 65% 55% at 50% 45%, var(--halo), transparent 70%)', borderRight: '1px solid var(--line)', minHeight: 400 }}>
         <div style={{ position: 'relative', width: 'min(400px, 75vw)', aspectRatio: '1/1' }}>
-          <GemViewer autoRotate enableZoom />
+          <GemViewer autoRotate modelPath={modelPath} cameraPosition={[0, 2.6, 3.2]} />
         </div>
         <div style={{ position: 'absolute', bottom: 24, display: 'flex', alignItems: 'center', gap: 10, fontFamily: "'Jost', sans-serif", fontSize: 9, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'var(--muted)' }}>
           <span style={{ width: 14, height: 14, border: '1px solid var(--muted)', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 8 }}>↻</span>
@@ -27,10 +35,10 @@ export function StoneHero() {
           House Signature · No. GD-0801
         </div>
         <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(34px, 4.8vw, 68px)', lineHeight: 1.02, color: 'var(--text)' }}>
-          The Aurora<br /><span style={{ fontStyle: 'italic', color: 'var(--accent-bright)' }}>Brilliant</span>
+          The Aurora<br /><span style={{ fontStyle: 'italic', color: 'var(--accent-bright)' }}>{info.title2}</span>
         </h1>
         <p style={{ maxWidth: 440, margin: '20px 0 0', fontSize: 'clamp(14px, 1.5vw, 16px)', lineHeight: 1.85, color: 'var(--text-soft)', fontWeight: 300 }}>
-          A round brilliant of extraordinary presence — D colour, internally flawless, and cut to triple-excellent proportions that return light with rare intensity. One of the finest stones ever to pass through our atelier.
+          {info.blurb}
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, background: 'var(--line)', border: '1px solid var(--line)', marginTop: 32 }}>

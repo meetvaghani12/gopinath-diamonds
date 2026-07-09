@@ -46,9 +46,9 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          style={{ fontFamily: "'Jost', sans-serif", fontSize: 'clamp(10px, 1.2vw, 12px)', letterSpacing: '0.5em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 20 }}
+          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(15px, 1.9vw, 21px)', letterSpacing: '0.06em', color: 'var(--accent-bright)', marginBottom: 24 }}
         >
-          Est. 1974 &nbsp;·&nbsp; Master Diamantaires
+          Est. 2015 &nbsp;·&nbsp; Master Diamantaires
         </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 30 }}

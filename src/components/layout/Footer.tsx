@@ -1,3 +1,5 @@
+import { LogoMark } from './LogoMark';
+
 export function Footer() {
   return (
     <footer
@@ -13,16 +15,19 @@ export function Footer() {
         margin: '0 auto',
       }}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-        <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, letterSpacing: '0.14em', color: 'var(--text)' }}>
-          GOPINATH
-        </span>
-        <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 8, letterSpacing: '0.6em', color: 'var(--accent)', marginTop: 3 }}>
-          DIAMONDS
-        </span>
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 11 }}>
+        <LogoMark size={30} />
+        <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+          <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, letterSpacing: '0.14em', color: 'var(--text)' }}>
+            GOPINATHJI
+          </span>
+          <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 8, letterSpacing: '0.6em', color: 'var(--accent)', marginTop: 3 }}>
+            DIAMONDS
+          </span>
+        </div>
       </div>
       <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: '0.16em', color: 'var(--muted)', width: '100%', textAlign: 'center' }} className="footer-copy">
-        &copy; 2026 Gopinath Diamonds · Crafted in Light
+        &copy; 2026 Gopinathji Diamonds · Crafted in Light
       </div>
       <style>{`
         @media (min-width: 640px) {

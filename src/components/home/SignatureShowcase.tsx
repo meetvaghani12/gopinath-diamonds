@@ -23,7 +23,7 @@ export function SignatureShowcase() {
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
             style={{ position: 'relative', aspectRatio: '1/1', borderRadius: 4, overflow: 'hidden', background: 'var(--surface-2)', cursor: 'pointer' }}
           >
-            <Image src="/images/aurora.jpg" alt="The Aurora Brilliant" fill style={{ objectFit: 'cover' }} />
+            <Image src="/images/aurora.png" alt="The Aurora Brilliant round diamond" fill style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', top: 'clamp(14px, 1.8vw, 20px)', left: 'clamp(14px, 1.8vw, 20px)', padding: '6px 14px', background: 'rgba(10,10,10,0.6)', backdropFilter: 'blur(6px)', border: '1px solid var(--line-2)', borderRadius: 2, fontFamily: "'Jost', sans-serif", fontSize: 9, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--accent-bright)', pointerEvents: 'none' }}>
               The Aurora
             </div>

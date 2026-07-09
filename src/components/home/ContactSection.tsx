@@ -12,10 +12,11 @@ export function ContactSection() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 14 }}>Visit the Maison</div>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 14 }}>Visit Us</div>
           <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(18px, 2vw, 22px)', color: 'var(--text)', lineHeight: 1.5 }}>
-            17 Rue de la Lumière<br />Jewellery Quarter<br />Mumbai · 400 001
+            EW-27, Bharat Diamond Bourse<br />Bandra Kurla Complex (BKC)<br />Mumbai · 400 051
           </p>
+          <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: '0.14em', color: 'var(--muted)', marginTop: 16 }}>GSTIN · 24CGNPK3957M1ZR</div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 36 }}
@@ -25,9 +26,9 @@ export function ContactSection() {
         >
           <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 14 }}>Private Appointments</div>
           <p style={{ color: 'var(--text-soft)', fontWeight: 300, lineHeight: 1.9, fontSize: 14 }}>
-            Tuesday — Saturday<br />10:00 — 19:00<br />
-            <a href="tel:+910000000000" style={{ color: 'var(--accent)', textDecoration: 'none' }}>+91 000 000 0000</a><br />
-            <a href="mailto:atelier@gopinath.com" style={{ color: 'var(--accent)', textDecoration: 'none' }}>atelier@gopinath.com</a>
+            Monday — Saturday<br />10:00 — 19:00<br />
+            <a href="tel:+919920332836" style={{ color: 'var(--accent)', textDecoration: 'none' }}>+91 99203 32836</a><br />
+            <a href="mailto:diamonds@gopinathji.com" style={{ color: 'var(--accent)', textDecoration: 'none' }}>diamonds@gopinathji.com</a>
           </p>
         </motion.div>
         <motion.div

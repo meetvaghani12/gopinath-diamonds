@@ -62,10 +62,16 @@ export function FourCsSection() {
           <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(28px, 3.2vw, 38px)', color: 'var(--text)', marginTop: 8 }}>{c.name}</h3>
           <p style={{ color: 'var(--text-soft)', fontWeight: 300, fontSize: 'clamp(13px, 1.4vw, 15px)', lineHeight: 1.9, marginTop: 16, maxWidth: 420 }}>{c.desc}</p>
         </div>
-        <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'radial-gradient(circle at 50% 45%, var(--halo), var(--bg-deep))', overflow: 'hidden', minHeight: 240 }}>
-          <div style={{ position: 'absolute', width: 'clamp(160px, 20vw, 220px)', height: 'clamp(160px, 20vw, 220px)', border: '1px solid var(--line-2)', borderRadius: '50%', animation: 'spinslow 26s linear infinite' }} />
-          <div style={{ position: 'absolute', width: 'clamp(200px, 28vw, 300px)', height: 'clamp(200px, 28vw, 300px)', border: '1px solid var(--line)', borderRadius: '50%' }} />
-          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(24px, 3vw, 44px)', color: 'var(--accent-bright)', textAlign: 'center', padding: '0 20px', fontStyle: 'italic' }}>{c.stat}</div>
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', overflow: 'hidden', minHeight: 'clamp(280px, 34vw, 440px)', background: 'var(--bg-deep)' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            key={c.image}
+            src={c.image}
+            alt={`${c.name} — ${c.stat}`}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,6,8,0.92) 4%, rgba(6,6,8,0.25) 45%, rgba(6,6,8,0.15))', pointerEvents: 'none' }} />
+          <div style={{ position: 'relative', fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(24px, 3vw, 40px)', color: 'var(--accent-bright)', textAlign: 'center', padding: '0 24px clamp(28px, 4vw, 44px)', fontStyle: 'italic', lineHeight: 1.3 }}>{c.stat}</div>
         </div>
       </motion.div>
     </section>

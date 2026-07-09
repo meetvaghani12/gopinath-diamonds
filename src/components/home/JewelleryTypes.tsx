@@ -1,15 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
+import { featuredJewelry } from '@/lib/jewelry';
 
-const categories = [
-  { name: 'Rings', tagline: 'Solitaire · Eternity · Trilogy', image: '/images/rings.jpg' },
-  { name: 'Necklaces', tagline: 'Riviera · Pendant · Choker', image: '/images/necklaces.jpg' },
-  { name: 'Earrings', tagline: 'Studs · Drops · Halo', image: '/images/earrings.jpg' },
-  { name: 'Bracelets', tagline: 'Tennis · Bangle · Cuff', image: '/images/bracelets.jpg' },
-];
+const taglines: Record<string, string> = {
+  Rings: 'Solitaire · Halo · Eternity',
+  Necklaces: 'Pendant · Riviera · Station',
+  Earrings: 'Stud · Halo · Drop',
+  Bracelets: 'Tennis · Bangle · Cuff',
+};
 
 export function JewelleryTypes() {
   return (
@@ -25,25 +25,32 @@ export function JewelleryTypes() {
           <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 'clamp(10px, 1vw, 11px)', letterSpacing: '0.5em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 14 }}>Fine Jewellery</div>
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, fontSize: 'clamp(28px, 4.4vw, 54px)', color: 'var(--text)', lineHeight: 1.05 }}>Worn Like Heirlooms</h2>
         </div>
-        <a href="#showcase" style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--line-2)', paddingBottom: 4, textDecoration: 'none' }}>
-          View the House Signature →
-        </a>
+        <Link href="/jewelry" style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--accent)', borderBottom: '1px solid var(--line-2)', paddingBottom: 4, textDecoration: 'none' }}>
+          View All Jewellery →
+        </Link>
       </motion.div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-        {categories.map((cat, i) => (
-          <Link key={cat.name} href="/diamonds/the-aurora" style={{ textDecoration: 'none' }}>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 'clamp(14px, 1.6vw, 22px)' }}>
+        {featuredJewelry.map((p, i) => (
+          <Link key={p.sku || p.slug} href={`/jewelry?category=${p.category}`} style={{ textDecoration: 'none' }}>
             <motion.div
-              initial={{ opacity: 0, y: 36 }}
+              initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 1.1, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 3, background: 'var(--surface-2)', cursor: 'pointer' }}
+              transition={{ duration: 1, delay: (i % 4) * 0.07, ease: [0.16, 1, 0.3, 1] }}
+              style={{ cursor: 'pointer' }}
             >
-              <Image src={cat.image} alt={cat.name} fill style={{ objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,6,8,0.85) 6%, transparent 55%)', pointerEvents: 'none' }} />
-              <div style={{ position: 'absolute', left: 'clamp(16px, 2vw, 24px)', bottom: 'clamp(16px, 2vw, 24px)', pointerEvents: 'none' }}>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(22px, 2.4vw, 28px)', color: '#fff' }}>{cat.name}</div>
-                <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 'clamp(8px, 0.9vw, 10px)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--accent-bright)', marginTop: 4 }}>{cat.tagline}</div>
+              <div className="jw-swap" style={{ position: 'relative', aspectRatio: '1/1', overflow: 'hidden', borderRadius: 4, background: '#f4f3f1', border: '1px solid var(--line)' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={p.image} alt={p.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="jw-alt" src={p.image.replace('-white.jpg', '-yellow.jpg')} alt={`${p.name} in yellow gold`} loading="lazy" />
+              </div>
+              <div style={{ marginTop: 12 }}>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(20px, 2vw, 25px)', color: 'var(--text)', lineHeight: 1.2 }}>{p.category}</div>
+                <div style={{ fontFamily: "'Jost', sans-serif", fontSize: 9, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'var(--accent-bright)', marginTop: 6 }}>
+                  {taglines[p.category]}
+                </div>
               </div>
             </motion.div>
           </Link>

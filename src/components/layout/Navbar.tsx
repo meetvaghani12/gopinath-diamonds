@@ -1,13 +1,16 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useThemeStore } from '@/stores/theme';
 import { palettes } from '@/lib/palettes';
+import { LogoMark } from './LogoMark';
 
 export function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const theme = useThemeStore((s) => s.theme);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const nav = navRef.current;
@@ -37,11 +40,13 @@ export function Navbar() {
   }, [open]);
 
   const links = [
-    { label: 'Collections', href: '#collections' },
-    { label: 'The 4 C\'s', href: '#fourcs' },
-    { label: 'Craft', href: '#craft' },
-    { label: 'Bespoke', href: '#bespoke' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Collections', href: '/#collections' },
+    { label: 'Jewellery', href: '/jewelry' },
+    { label: 'The 4 C\'s', href: '/#fourcs' },
+    { label: 'Craft', href: '/#craft' },
+    { label: 'About', href: '/about' },
+    { label: 'Bespoke', href: '/#bespoke' },
+    { label: 'Contact', href: '/#contact' },
   ];
 
   const linkStyle: React.CSSProperties = {
@@ -52,6 +57,11 @@ export function Navbar() {
     letterSpacing: '0.24em',
     textTransform: 'uppercase',
   };
+
+  // The global site nav belongs to the home page only. Sub-pages (the diamond
+  // detail page, the about page) render their own back-nav, so rendering this
+  // here too would stack two navbars.
+  if (pathname !== '/') return null;
 
   return (
     <nav
@@ -70,12 +80,15 @@ export function Navbar() {
         borderBottom: '1px solid transparent',
       }}
     >
-      <a href="#top" style={{ display: 'flex', flexDirection: 'column', lineHeight: 1, color: 'var(--text)', textDecoration: 'none' }}>
-        <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 500, letterSpacing: '0.14em' }}>
-          GOPINATH
-        </span>
-        <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 8, letterSpacing: '0.62em', color: 'var(--accent)', marginTop: 2, paddingLeft: 2 }}>
-          DIAMONDS
+      <a href="#top" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 11, lineHeight: 1, color: 'var(--text)', textDecoration: 'none' }}>
+        <LogoMark size={32} />
+        <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+          <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, fontWeight: 500, letterSpacing: '0.14em' }}>
+            GOPINATHJI
+          </span>
+          <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 8, letterSpacing: '0.62em', color: 'var(--accent)', marginTop: 2, paddingLeft: 2 }}>
+            DIAMONDS
+          </span>
         </span>
       </a>
 

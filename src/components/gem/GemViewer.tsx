@@ -1,42 +1,60 @@
 'use client';
 
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, ContactShadows } from '@react-three/drei';
+import { OrbitControls, ContactShadows } from '@react-three/drei';
+import { EffectComposer, Bloom, ToneMapping } from '@react-three/postprocessing';
+import { HalfFloatType } from 'three';
+import { ToneMappingMode } from 'postprocessing';
 import { Gem } from './Gem';
 import type { GemViewerProps } from './types';
+import * as THREE from 'three';
 
-export function GemViewer({ autoRotate = true, enableZoom = false }: GemViewerProps) {
+export function GemViewer({
+  autoRotate = true,
+  enableZoom = false,
+  modelPath,
+  cameraPosition = [0, 0.1, 4.2],
+}: GemViewerProps) {
   return (
     <Canvas
-      camera={{ position: [0, 0.1, 4.2], fov: 36 }}
-      gl={{ antialias: true, toneMapping: 3, toneMappingExposure: 1.2 }}
+      camera={{ position: cameraPosition, fov: 36, near: 0.05, far: 50 }}
+      gl={{ antialias: true, toneMapping: THREE.NoToneMapping, alpha: true }}
+      dpr={[1, 1.5]}
       style={{ touchAction: 'none' }}
     >
-      <Gem />
-      <pointLight position={[2.5, 3.5, 3]} intensity={28} color="#fff2d6" distance={30} decay={1} />
-      <pointLight position={[-3.5, -1.5, 3]} intensity={18} color="#c8e0ff" distance={30} decay={1} />
-      <pointLight position={[0, -3, -3.5]} intensity={14} color="#ffd6e8" distance={30} decay={1} />
-      <pointLight position={[0, 4.5, -1]} intensity={10} color="#ffffff" distance={30} decay={1} />
-      <ambientLight intensity={0.15} />
-      <ContactShadows
-        position={[0, -1.2, 0]}
-        opacity={0.25}
-        scale={4}
-        blur={2}
-        far={2}
-      />
+      {/* The diamond is fully self-lit: its shader samples the HDR environment
+          directly, so no scene lights are needed. */}
+      <Suspense fallback={null}>
+        <Gem modelPath={modelPath} />
+      </Suspense>
+
+      <ContactShadows position={[0, -1.2, 0]} opacity={0.3} scale={4} blur={1.5} far={2} />
+
       <OrbitControls
         autoRotate={autoRotate}
-        autoRotateSpeed={1.8}
+        autoRotateSpeed={1.5}
         enableZoom={enableZoom}
         enablePan={false}
         enableDamping
-        dampingFactor={0.06}
-        minPolarAngle={Math.PI * 0.25}
-        maxPolarAngle={Math.PI * 0.75}
+        dampingFactor={0.05}
+        minPolarAngle={Math.PI * 0.02}
+        maxPolarAngle={Math.PI * 0.98}
         touches={{ ONE: 1, TWO: 2 }}
       />
-      <Environment preset="studio" resolution={1024} />
+
+      {/* HDR buffer so the diamond's >1.0 specular output survives to bloom,
+          then a single ACES tone-map at the end of the chain. */}
+      <EffectComposer frameBufferType={HalfFloatType}>
+        <Bloom
+          intensity={0.5}
+          luminanceThreshold={1.0}
+          luminanceSmoothing={0.25}
+          radius={0.6}
+          mipmapBlur
+        />
+        <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
+      </EffectComposer>
     </Canvas>
   );
 }
