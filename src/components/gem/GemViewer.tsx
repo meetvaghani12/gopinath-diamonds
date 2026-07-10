@@ -40,7 +40,7 @@ export function GemViewer({
         dampingFactor={0.05}
         minPolarAngle={Math.PI * 0.02}
         maxPolarAngle={Math.PI * 0.98}
-        touches={{ ONE: 1, TWO: 2 }}
+        touches={{ ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_ROTATE }}
       />
 
       {/* HDR buffer so the diamond's >1.0 specular output survives to bloom,
